@@ -42,13 +42,29 @@ function draw() {
   //   its moving  direction
   if (d == "left") snakeX -= scale;
   if (d == "up") snakeY -= scale;
-  if (d == "right") snakeY += scale;
+  if (d == "right") snakeX += scale;
   if (d == "down") snakeY += scale;
+
+  // restrict snake inside the canvas
+
+  if (snakeX > canvas.width) {
+    snakeX = 0;
+  }
+  if (snakeY > canvas.height) {
+    snakeY = 0;
+  }
+  if (snakeX < 0) {
+    snakeX = canvas.width;
+  }
+  if (snakeY < 0) {
+    snakeY = canvas.height;
+  }
 
   let newHead = {
     x: snakeX,
     y: snakeY,
   };
+
   snake.pop();
   snake.unshift(newHead);
 }
