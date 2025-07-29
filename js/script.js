@@ -1,7 +1,6 @@
 // creat canvas
 const canvas = document.querySelector(".canvas");
 const ctx = canvas.getContext("2d");
-console.log(ctx);
 
 // divide our canvas into 10 by 10 smalll square
 
@@ -66,7 +65,6 @@ function draw() {
   //   old head position
   let snakeX = snake[0].x;
   let snakeY = snake[0].y;
-  console.log(snakeX);
 
   //   its moving  direction
   if (d == "left") snakeX -= scale;
@@ -105,5 +103,20 @@ function draw() {
     y: snakeY,
   };
 
+  if (eatself(newHead, snake)) {
+    clearInterval(playgame); // game over
+  }
+
   snake.unshift(newHead); // adding to snake array newhead object
+}
+
+// check if snake is eating itself
+
+function eatself(head, array) {
+  for (let i = 0; i < array.length; i++) {
+    if (head.x == array[i].x && head.y == array[i].i) {
+      return true;
+    }
+  }
+  return false;
 }
