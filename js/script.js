@@ -9,11 +9,16 @@ const scale = 20;
 const rows = canvas.height / scale;
 const columns = canvas.width / scale;
 
-// creating snake
+// creating random snake
 
 let snake = [];
 snake[0] = {
   x: Math.floor(Math.random() * columns) * scale, // to generate random x axis
+  y: Math.floor(Math.random() * rows) * scale,
+};
+//  creating snake food object
+let food = {
+  x: Math.floor(Math.random() * columns) * scale, // to generate random snake food
   y: Math.floor(Math.random() * rows) * scale,
 };
 
@@ -50,6 +55,13 @@ function draw() {
     ctx.fillRect(snake[i].x, snake[i].y, scale, scale); // row ,column,20-width of rectangle,20-h of rectangle
     ctx.strokeRect(snake[i].x, snake[i].y, scale, scale);
   }
+
+  //   draw food
+
+  ctx.fillStyle = "yellow";
+  ctx.strokeStyle = "green";
+  ctx.fillRect(food.x, food.y, scale, scale);
+  ctx.strokeRect(food.x, food.y, scale, scale);
 
   //   old head position
   let snakeX = snake[0].x;
