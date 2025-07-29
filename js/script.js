@@ -17,8 +17,25 @@ snake[0] = {
   y: Math.floor(Math.random() * rows) * scale,
 };
 
-// default snake direction
-let d = "right";
+let d = "right"; // default snake direction
+// changing direction using key
+
+document.onkeydown = direction;
+function direction(event) {
+  let key = event.keyCode;
+  if (key == 37 && d != "right") {
+    d = "left";
+  }
+  if (key == 38 && d != "down") {
+    d = "up";
+  }
+  if (key == 39 && d != "left") {
+    d = "right";
+  }
+  if (key == 40 && d != "up") {
+    d = "down";
+  }
+}
 
 // call draw function every 100 ms to draw the snake
 
@@ -64,7 +81,6 @@ function draw() {
     x: snakeX,
     y: snakeY,
   };
-
-  snake.pop();
-  snake.unshift(newHead);
+  snake.pop(); // before adding new remove the previous snake
+  snake.unshift(newHead); // adding to snake array newhead object
 }
