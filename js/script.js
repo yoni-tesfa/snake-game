@@ -89,10 +89,21 @@ function draw() {
     snakeY = canvas.height;
   }
 
+  //   when snake eats the food it grow
+
+  if (snakeX == food.x && snakeY == food.y) {
+    food = {
+      x: Math.floor(Math.random() * columns) * scale, // to generate random snake food
+      y: Math.floor(Math.random() * rows) * scale,
+    };
+  } else {
+    snake.pop(); // before adding new remove the previous snake
+  }
+
   let newHead = {
     x: snakeX,
     y: snakeY,
   };
-  snake.pop(); // before adding new remove the previous snake
+
   snake.unshift(newHead); // adding to snake array newhead object
 }
